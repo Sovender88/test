@@ -1,25 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace test
 {
-   
-    class myTable
-    {
-        public myTable(double X, double Y)
-        {
-            this.X = X;
-            this.Y = Y;
-        }
-
-        public double X { get; set; }
-        public double Y { get; set; }
-    }
-
     public partial class MainWindow : Window
     {
         double[,] option1 = { { 0, 0.2, 0.4, 0.6, 0.8, 1 }, { 3, 6, 3, 6, 4, 3 } };
@@ -33,7 +21,7 @@ namespace test
         double[,] option9 = { { 2, 2.2, 2.4, 2.6, 2.8, 3 }, { 4, 2, 4, 2, 5, 2 } };
         double[,] option10 = { { 0, 0.2, 0.4, 0.6, 0.8, 1 }, { 6, 3, 2, 6, 2, 5 } };
         bool del = false;
-
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -51,9 +39,9 @@ namespace test
 
         public void Draw()
         {
-            for (int j = 0; j < 2; j++) // Рисуем плоскость координат
+            for (int j = 0; j < 2; j++) 
             {
-                for (int k = 0; k <= 12; k++) // Рисуем вертикальные линии, шаг 0,2
+                for (int k = 0; k <= 12; k++)
                 {
                     if (j == 0)
                     {
@@ -63,16 +51,16 @@ namespace test
                             Y1 = 0,
                             X2 = k * 50,
                             Y2 = canvas.Height,
-                            Stroke = Brushes.Gray // делаем линии черными
+                            Stroke = Brushes.Gray 
                         };
                         if (k % 2 == 0)
-                            L.StrokeThickness = 3; // толщина основных линий
+                            L.StrokeThickness = 3;
                         else
-                            L.StrokeThickness = 1; // толщина промежуточных линий
-                        canvas.Children.Add(L); // рисуем на Canvas
+                            L.StrokeThickness = 1;
+                        canvas.Children.Add(L); 
                     }
-                    // Аналогично для горизонтальных линий
-                    for (int K = 0; K <= 12 ; K++) // Рисуем горизонтальные линии, шаг 1
+                   
+                    for (int K = 0; K <= 12 ; K++) 
                     {
                         if (j == 1)
                         {
@@ -82,10 +70,10 @@ namespace test
                                 X1 = 0,
                                 Y2 = K * 50,
                                 X2 = canvas.Width,
-                                Stroke = Brushes.Gray, // делаем линии черными
-                                StrokeThickness = 3 // толщина основных линий
+                                Stroke = Brushes.Gray, 
+                                StrokeThickness = 3 
                             };
-                            canvas.Children.Add(L); // рисуем их на Canvas
+                            canvas.Children.Add(L); 
                         }
                     }
                 }
@@ -212,13 +200,20 @@ namespace test
 
         public void OutValue(double[,] function)
         {
-            List<myTable> result = new List<myTable>();
-                                                      
-            for (int i = 0; i < 6; i++)
-            {
-                result.Add(new myTable(function[0, i], function[1, i]));
-            }
-            grid.ItemsSource = result; //заполняем таблицу 
+            
+            OutX1.Text = function[0, 0].ToString();
+            OutX2.Text = function[0, 1].ToString();
+            OutX3.Text = function[0, 2].ToString();
+            OutX4.Text = function[0, 3].ToString();
+            OutX5.Text = function[0, 4].ToString();
+            OutX6.Text = function[0, 5].ToString();
+
+            OutY1.Text = function[1, 0].ToString();
+            OutY2.Text = function[1, 1].ToString();
+            OutY3.Text = function[1, 2].ToString();
+            OutY4.Text = function[1, 3].ToString();
+            OutY5.Text = function[1, 4].ToString();
+            OutY6.Text = function[1, 5].ToString();
         }
 
         public void InputValue()
@@ -243,12 +238,25 @@ namespace test
                 double[,] inputArray = {
                     {inpX1, inpX2, inpX3, inpX4, inpX5, inpX6 },
                     {inpY1, inpY2, inpY3, inpY4, inpY5, inpY6}};
-                // отправка этого массива таким же спсобом как через кнопки
+                ClearTextBox();
                 SolveFunction(function: inputArray);
             }
             catch
             {
                MessageBox.Show("Ошибка заполнения таблицы");
+            }
+        }
+
+        public void ClearTextBox()
+        {
+            TextBox[,] myarray = {
+                {X1, X2, X3, X4, X5, X6 },
+                {Y1, Y2, Y3, Y4, Y5, Y6,}
+            };
+
+            foreach (TextBox elem in myarray)
+            {
+                elem.Text = "";
             }
         }
 
