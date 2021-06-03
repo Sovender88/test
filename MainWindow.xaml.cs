@@ -10,24 +10,43 @@ namespace test
 {
     public partial class MainWindow : Window
     {
-        double[,] option1 = { { 0, 0.2, 0.4, 0.6, 0.8, 1 }, { 3, 6, 3, 6, 4, 3 } };
-        double[,] option2 = { { 0, 0.2, 0.4, 0.6, 0.8, 1 }, { 5, 5, 4, 4, 6, 6 } };
-        double[,] option3 = { { 3, 3.2, 3.4, 3.6, 3.8, 4 }, { 2, 3, 3, 3, 2, 4 } };
-        double[,] option4 = { { 3, 3.2, 3.4, 3.6, 3.8, 4 }, { 6, 2, 6, 4, 3, 4 } };
-        double[,] option5 = { { 5, 5.2, 5.4, 5.6, 5.8, 6 }, { 2, 4, 4, 3, 3, 3 } };
-        double[,] option6 = { { 4, 4.2, 4.4, 4.6, 4.8, 5 }, { 4, 3, 6, 6, 4, 4 } };
-        double[,] option7 = { { 1, 1.2, 1.4, 1.6, 1.8, 2 }, { 2, 6, 4, 4, 2, 5 } };
-        double[,] option8 = { { 5, 5.2, 5.4, 5.6, 5.8, 6 }, { 3, 2, 5, 2, 2, 3 } };
-        double[,] option9 = { { 2, 2.2, 2.4, 2.6, 2.8, 3 }, { 4, 2, 4, 2, 5, 2 } };
-        double[,] option10 = { { 0, 0.2, 0.4, 0.6, 0.8, 1 }, { 6, 3, 2, 6, 2, 5 } };
+        private readonly double[][,] option =
+        {
+            new [,]{ { 0, 0.2, 0.4, 0.6, 0.8, 1 }, { 3, 6, 3, 6, 4, 3 } },
+            new[,]{ { 0, 0.2, 0.4, 0.6, 0.8, 1 }, { 5, 5, 4, 4, 6, 6 } },
+            new[,]{ { 3, 3.2, 3.4, 3.6, 3.8, 4 }, { 2, 3, 3, 3, 2, 4 } },
+            new[,]{ { 3, 3.2, 3.4, 3.6, 3.8, 4 }, { 6, 2, 6, 4, 3, 4 } },
+            new[,]{ { 5, 5.2, 5.4, 5.6, 5.8, 6 }, { 2, 4, 4, 3, 3, 3 } },
+            new[,]{ { 4, 4.2, 4.4, 4.6, 4.8, 5 }, { 4, 3, 6, 6, 4, 4 } },
+            new[,]{ { 1, 1.2, 1.4, 1.6, 1.8, 2 }, { 2, 6, 4, 4, 2, 5 } },
+            new[,]{ { 5, 5.2, 5.4, 5.6, 5.8, 6 }, { 3, 2, 5, 2, 2, 3 } },
+            new[,]{ { 2, 2.2, 2.4, 2.6, 2.8, 3 }, { 4, 2, 4, 2, 5, 2 } },
+            new[,]{ { 0, 0.2, 0.4, 0.6, 0.8, 1 }, { 6, 3, 2, 6, 2, 5 } }
+        };
         bool del = false;
         
         public MainWindow()
         {
             InitializeComponent();
-            Draw();
 
+            foreach (UIElement el in GroupButton.Children)
+            {
+                if (el is Button)
+                {
+                    ((Button)el).Click += ButtonClick;
+                }
+            }
+
+            Draw();
 		}
+
+        private void ButtonClick(object sender, RoutedEventArgs e)
+        {
+            string name = (sender as Button).Name;
+        
+            int i = Convert.ToInt32(name.Substring(name.Length -1)) - 1;
+            SolveFunction(option[i]);
+        }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -157,9 +176,15 @@ namespace test
                 PC.Add(new Point(p.X, canvas.Height - p.Y)); 
             }
             PL.Points = PC;
-            l_tb.Text = $"y= {a0:f3} + ({a1:f3})*x";
+
+            LabelText(a0, a1);
 
             canvas.Children.Add(PL); 
+        }
+
+        public void LabelText(double a0, double a1)
+        {
+            l_tb.Text = (a0 != 0 && a1 != 0) ? $"y={a0:f3} + ({a1:f3})*x" : (a0 != 0 && a1 == 0) ? $"y={a0:f3}" : $"y={a1:f3}*x ";
         }
 
         public void DrawParabola(double b0, double S0, double S1, double S2, double c1, double c2, double c3, double c4,
@@ -178,8 +203,8 @@ namespace test
             {
                 double t = function[0, 0] + (x1 - 50) / 500;
                 y1 = a0 * 50 + a1 * (t) * 50 + a2 * (t) * (t) * 50;
-                P1.Add(new Point(x1, y1));   
-                x1 += 0.01;     
+                P1.Add(new Point(x1, y1));
+                x1 += 0.01;
             }
             
             Polyline PL1 = new Polyline();
@@ -192,10 +217,28 @@ namespace test
             PL1.Stroke = Brushes.Red; 
             
             PL1.StrokeThickness = 2; 
-            canvas.Children.Add(PL1); 
+            canvas.Children.Add(PL1);
 
+            SquareText(a0, a1, a2);
             
-            p_tb.Text = $"y= {a0:f3} + ({a1:f3}*x + ({a2:f3}) * x^2)";
+        }
+
+        public void SquareText(double a0, double a1, double a2)
+        {
+            if (a0 != 0 && a1 != 0 && a2 != 0)
+            {
+                p_tb.Text = $"y={a0:f3} + ({a1:f3})*x + ({a2:f3})*x^2)";
+            }
+
+            else if (a0 != 0 && a1 != 0 && a2 == 0)
+            {
+                p_tb.Text = $"y={a0:f3} + ({a1:f3}*x";
+            }
+
+            else if (a1 != 0 && a1 == 0 && a2 != 0)
+            {
+                p_tb.Text = $"y={a0:f3} + ({a2:f3})*x^2)";
+            }
         }
 
         public void OutValue(double[,] function)
@@ -260,29 +303,9 @@ namespace test
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) => SolveFunction(option1);
-
-        private void Button_Click_1(object sender, RoutedEventArgs e) => SolveFunction(option2);
-
-        private void Button_Click_2(object sender, RoutedEventArgs e) => SolveFunction(option3);
-
-        private void Button_Click_3(object sender, RoutedEventArgs e) => SolveFunction(option4);
-
-        private void Button_Click_4(object sender, RoutedEventArgs e) => SolveFunction(option5);
-
-        private void Button_Click_5(object sender, RoutedEventArgs e) => SolveFunction(option6);
-
-        private void Button_Click_6(object sender, RoutedEventArgs e) => SolveFunction(option7);
-
-        private void Button_Click_7(object sender, RoutedEventArgs e) => SolveFunction(option8);
-
-        private void Button_Click_8(object sender, RoutedEventArgs e) => SolveFunction(option9);
-
-        private void Button_Click_9(object sender, RoutedEventArgs e) => SolveFunction(option10);
-
         private void Calc_Button_Click(object sender, RoutedEventArgs e) => InputValue();
 
-        private void close(object sender, MouseButtonEventArgs e)
+        private void Close(object sender, MouseButtonEventArgs e)
         {
             try 
             {
@@ -296,7 +319,7 @@ namespace test
             
         }
 
-        private void minimaze(object sender, MouseButtonEventArgs e)
+        private void Minimaze(object sender, MouseButtonEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
             try
@@ -308,5 +331,7 @@ namespace test
                 MessageBox.Show(ex.Message);
             }
         }
+
+        
     }
 }
