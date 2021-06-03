@@ -52,8 +52,8 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.ColumnSpan="2"
               MouseDown="Grid_MouseDown">
-                    <Border Background="#0F0F2D" CornerRadius="18">
-                        <Grid>
+                    <Border Background="#0F0F2D" CornerRadius="16">
+                        <Grid Name="GroupButton">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="86*"/>
                                 <ColumnDefinition Width="85*"/>
@@ -74,10 +74,9 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     FontFamily="Fonts#dosis" Height="30" Margin="8,10" Width="70"
-                    FontWeight="Light" Foreground="White" Click="Button_Click"
+                    FontWeight="Light" Foreground="White"
                     Style="{StaticResource ButtonStyle}"
-                    Template="{StaticResource Button Template}">
-                            </Button>
+                    Template="{StaticResource Button Template}"/>
                             <Button x:Name="v2"
                 Content="Вариант 2"
                     Grid.Column="1"
@@ -85,10 +84,9 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     FontFamily="Fonts#dosis" Height="30" Margin="8,10,7,10" Width="70"
-                    FontWeight="Light" Foreground="White" Click="Button_Click_1"
+                    FontWeight="Light" Foreground="White"
                     Style="{StaticResource ButtonStyle}"
-                    Template="{StaticResource Button Template}">
-                            </Button>
+                    Template="{StaticResource Button Template}"/>
                             <Button x:Name="v3"
                 Content="Вариант 3"
                     Grid.Column="2"
@@ -96,21 +94,19 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     FontFamily="Fonts#dosis" Height="30" Margin="7,10,8,10" Width="70"
-                    FontWeight="Light" Foreground="White" Click="Button_Click_2"
+                    FontWeight="Light" Foreground="White"
                     Style="{StaticResource ButtonStyle}"
-                    Template="{StaticResource Button Template}">
-                            </Button>
+                    Template="{StaticResource Button Template}"/>
                             <Button x:Name="v4"
                 Content="Вариант 4"
                     Grid.Column="3"
                     FontSize="14"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    FontFamily="Fonts#dosis" Height="30" Margin="8,10" Width="70"
-                    FontWeight="Light" Foreground="White" Click="Button_Click_3"
+                    HorizontalAlignment="Right"
+                    FontFamily="Fonts#dosis" Height="30" Margin="0,10,10,10" Width="70"
+                    FontWeight="Light" Foreground="White"
                     Style="{StaticResource ButtonStyle}"
-                    Template="{StaticResource Button Template}">
-                            </Button>
+                    Template="{StaticResource Button Template}"/>
                             <Button x:Name="v5"
                 Content="Вариант 5"
                     Grid.Column="4"
@@ -118,10 +114,9 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     FontFamily="Fonts#dosis" Height="30" Margin="8,10" Width="70"
-                    FontWeight="Light" Foreground="White" Click="Button_Click_4"
+                    FontWeight="Light" Foreground="White"
                     Style="{StaticResource ButtonStyle}"
-                    Template="{StaticResource Button Template}">
-                            </Button>
+                    Template="{StaticResource Button Template}"/>
                             <Button x:Name="v6"
                 Content="Вариант 6"
                     Grid.Column="5"
@@ -129,10 +124,9 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     FontFamily="Fonts#dosis" Height="30" Margin="8,10" Width="70"
-                    FontWeight="Light" Foreground="White" Click="Button_Click_5"
+                    FontWeight="Light" Foreground="White"
                     Style="{StaticResource ButtonStyle}"
-                    Template="{StaticResource Button Template}">
-                            </Button>
+                    Template="{StaticResource Button Template}"/>
                             <Button x:Name="v7"
                 Content="Вариант 7"
                     Grid.Column="6"
@@ -140,10 +134,9 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     FontFamily="Fonts#dosis" Height="30" Margin="8,10,7,10" Width="70"
-                    FontWeight="Light" Foreground="White" Click="Button_Click_6"
+                    FontWeight="Light" Foreground="White"
                     Style="{StaticResource ButtonStyle}"
-                    Template="{StaticResource Button Template}">
-                            </Button>
+                    Template="{StaticResource Button Template}"/>
                             <Button x:Name="v8"
                 Content="Вариант 8"
                     Grid.Column="7"
@@ -151,10 +144,9 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     FontFamily="Fonts#dosis" Height="30" Margin="7,10,8,10" Width="70"
-                    FontWeight="Light" Foreground="White" Click="Button_Click_7"
+                    FontWeight="Light" Foreground="White"
                     Style="{StaticResource ButtonStyle}"
-                    Template="{StaticResource Button Template}">
-                            </Button>
+                    Template="{StaticResource Button Template}"/>
                             <Button x:Name="v9"
                 Content="Вариант 9"
                     Grid.Column="8"
@@ -162,10 +154,9 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     FontFamily="Fonts#dosis" Height="30" Margin="8,10,7,10" Width="70"
-                    FontWeight="Light" Foreground="White" Click="Button_Click_8"
+                    FontWeight="Light" Foreground="White"
                     Style="{StaticResource ButtonStyle}"
-                    Template="{StaticResource Button Template}">
-                            </Button>
+                    Template="{StaticResource Button Template}"/>
                             <Button x:Name="v10"
                 Content="Вариант 10"
                     Grid.Column="9"
@@ -173,21 +164,20 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     FontFamily="Fonts#dosis" Height="30" Margin="9,10,7,10" Width="70"
-                    FontWeight="Light" Foreground="White" Click="Button_Click_9"
+                    FontWeight="Light" Foreground="White"
                     Style="{StaticResource ButtonStyle}"
-                    Template="{StaticResource Button Template}">
-                            </Button>
+                    Template="{StaticResource Button Template}"/>
 
                             <Ellipse Grid.Column="10"
                          Fill="#FFD10736"
                          Width="15" Margin="25,8,4,27"
-                         Height="15" MouseLeftButtonDown="close" ToolTip="закрыть" Cursor="Hand">
+                         Height="15" MouseLeftButtonDown="Close" ToolTip="закрыть" Cursor="Hand">
                             </Ellipse>
 
                             <Ellipse Grid.Column="10"
                          Fill="#FFF5EA00"
                          Width="15" Margin="5,8,24,27"
-                         Height="15" MouseLeftButtonDown="minimaze" ToolTip="свернуть" Cursor="Hand"/>
+                         Height="15" MouseLeftButtonDown="Minimaze" ToolTip="свернуть" Cursor="Hand"/>
                         </Grid>
                     </Border>
                 </Grid>
@@ -253,13 +243,11 @@
                         VerticalAlignment="Top"
                         HorizontalAlignment="Left" Height="67">
                         <Border BorderThickness="1" 
-                        Margin="3,5,0,0"
-                        CornerRadius="10,10,10,10" BorderBrush="Black" Background="Red" Height="24" Width="58">
-                        </Border>
+                        Margin="4,5,10,0"
+                        CornerRadius="10,10,10,10" BorderBrush="Black" Background="Red" Height="24"/>
                         <Border BorderThickness="1"
-                        Margin="3,13,0,3"
-                        CornerRadius="10,10,10,10" BorderBrush="Black" Background="Blue" Height="24" Width="58">
-                        </Border>
+                        Margin="4,13,10,3"
+                        CornerRadius="10,10,10,10" BorderBrush="Black" Background="Blue" Height="24"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical"
@@ -274,23 +262,25 @@
                          Foreground="White"
                          Opacity="0.8"  
                          HorizontalAlignment="Left"
-                         Height="25" Margin="0,0,0,0" Grid.Row="1"
+                         Height="25" Margin="-8,0,0,0" Grid.Row="1"
+                         HorizontalContentAlignment="Left"
                          VerticalContentAlignment="Center"
-                         VerticalAlignment="Top" Width="229" FontSize="14">
+                         VerticalAlignment="Top" Width="252" FontSize="14">
                         </TextBox>
 
                         <TextBox Text=""
                          Name="l_tb"
                          HorizontalAlignment="Left"
-                         Height="25" Margin="0,16,0,0" Grid.Row="1"
+                         Height="25" Margin="-8,16,0,0" Grid.Row="1"
                          FontFamily="Helvetica"
                          FontWeight="Regular"
                          Background="Transparent"
                          BorderThickness="0"
                          Foreground="White"
                          Opacity="0.8" 
+                         HorizontalContentAlignment="Left"
                          VerticalContentAlignment="Center"
-                         VerticalAlignment="Top" Width="229" FontSize="14">
+                         VerticalAlignment="Top" Width="252" FontSize="14">
                         </TextBox>
                     </StackPanel>
 
